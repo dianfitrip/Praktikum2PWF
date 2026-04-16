@@ -24,27 +24,22 @@ class ProductPolicy
         return true;
     }
 
-    /**
-     * Determine whether the user can create models.
-     */
-    public function create(User $user): bool
+   public function create(User $user): bool
     {
-        return true;
+        // HANYA Admin yang boleh membuat produk baru
+        return $user->isAdmin();
     }
 
-    /**
-     * Determine whether the user can update the model.
-     */
     public function update(User $user, Product $product): bool
     {
-        // Diizinkan jika dia adalah Admin, ATAU jika ID miliknya sama dengan ID pembuat produk
-        return $user->isAdmin() || $user->id === $product->user_id;
+        // Harus Admin DAN ID user harus sama dengan ID pembuat produk
+        return $user->isAdmin() && $user->id === $product->user_id;
     }
 
     public function delete(User $user, Product $product): bool
     {
-        // Logikanya sama persis dengan update
-        return $user->isAdmin() || $user->id === $product->user_id;
+        // Logikanya sama dengan update
+        return $user->isAdmin() && $user->id === $product->user_id;
     }
 
     /**

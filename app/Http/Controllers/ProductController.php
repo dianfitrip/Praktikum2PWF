@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class ProductController extends Controller
 {
@@ -18,6 +19,8 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
+        Gate::authorize('create', Product::class);
+
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'qty' => 'required|integer',
@@ -32,6 +35,8 @@ class ProductController extends Controller
 
     public function create()
     {
+        Gate::authorize('create', Product::class);
+
         $users = User::orderBy('name')->get();
         
         return view('product.create', compact('users'));
@@ -47,10 +52,12 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $product = Product::findOrFail($id);
+
+        Gate::authorize('update', $product);
         
         $validated = $request->validate([
             'name' => 'sometimes|string|max:255',
-            'qty' => 'sometimes|integer', // PERBAIKAN: quantity disesuaikan jadi qty
+            'qty' => 'sometimes|integer',
             'price' => 'sometimes|numeric',
             'user_id' => 'sometimes|exists:users,id',
         ]);
@@ -62,6 +69,8 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
+        Gate::authorize('update', $product);
+
         $users = User::orderBy('name')->get();
         
         return view('product.edit', compact('product', 'users'));
@@ -69,6 +78,8 @@ class ProductController extends Controller
 
     public function delete($id)
     {
+        Gate::authorize('delete', $product);
+
         $product = Product::findOrFail($id);
         
         $product->delete();
