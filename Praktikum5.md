@@ -1,9 +1,13 @@
 # Praktikum 5
 ## Tampilan Halaman Admin
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/da0b905e-8c4d-42a5-9e9b-11806610ae30" />
+admin 1:
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/1843ca78-9801-4e45-97da-27ac6c032fa9" />
+admin 2:
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/eda8e6d6-94ab-4c09-a3b5-c56e0d5bed42" />
+
 
 ## Tampilan Halaman User
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/c5ebf78a-b2c3-47b6-bfb9-afd7776779ec" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/8fbfc308-455b-4fcc-a180-c1405b329ea0" />
 
 
 ## ketika sudah export ke file csv
