@@ -16,6 +16,7 @@ class Product extends Model
         'name',
         'qty',
         'price',
+        'category_id' //tambahkan ini untuk category UCP1
     ];
 
     // Menambahkan ": BelongsTo" di akhir fungsi
