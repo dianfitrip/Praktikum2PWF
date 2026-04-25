@@ -26,7 +26,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        // Mengarahkan ke file view resources/views/category/create.blade.php
+        return view('category.create');
     }
 
     /**
@@ -34,9 +35,19 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        // 1. Validasi input
+        $request->validate([
+            'name' => 'required|unique:categories,name|max:255',
+        ]);
 
+        // 2. Simpan ke database
+        \App\Models\Category::create([
+            'name' => $request->name,
+        ]);
+
+        // 3. Kembali ke halaman list dengan pesan sukses
+        return redirect()->route('category.index')->with('success', 'Kategori berhasil ditambahkan!');
+    }
     /**
      * Display the specified resource.
      */

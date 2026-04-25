@@ -26,8 +26,8 @@ class ProductPolicy
 
    public function create(User $user): bool
     {
-        // HANYA Admin yang boleh membuat produk baru
-        return $user->isAdmin();
+        // Gunakan strtolower untuk menghindari error perbedaan huruf besar/kecil
+        return strtolower($user->role) === 'admin' || strtolower($user->role) === 'staff';
     }
 
     public function update(User $user, Product $product): bool
@@ -38,8 +38,8 @@ class ProductPolicy
 
     public function delete(User $user, Product $product): bool
     {
-        // Mengizinkan jika dia pemilik produk ATAU dia adalah admin
-        return $user->id === $product->user_id || $user->role === 'admin';
+        // Izinkan jika user adalah pemilik produk ATAU user adalah admin
+        return $user->id === $product->user_id || strtolower($user->role) === 'admin';
     }
 
     /**

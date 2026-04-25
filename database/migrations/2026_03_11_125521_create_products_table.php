@@ -17,6 +17,9 @@ return new class extends Migration
             $table->string('name');
             $table->integer('qty');
             $table->decimal('price', 10, 2);
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('category_id')->constrained('category')->cascadeOnDelete();
+            $table->timestamps();
             $table->timestamps();
         });
     }

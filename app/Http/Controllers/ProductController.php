@@ -32,11 +32,12 @@ class ProductController extends Controller
 
     public function create()
     {
-        // Mengambil semua data kategori dari database untuk ditampilkan di dropdown
+        // Mengambil semua data kategori dan user dari database
         $categories = Category::all(); 
+        $users = User::all(); // <--- 1. TAMBAHKAN BARIS INI
         
-        // Melempar data kategori ke halaman form tambah produk
-        return view('product.create', compact('categories'));
+        // Melempar data kategori DAN user ke halaman form tambah produk
+        return view('product.create', compact('categories', 'users')); // <--- 2. TAMBAHKAN 'users' DI SINI
     }
 
     public function show($id)
@@ -69,10 +70,13 @@ class ProductController extends Controller
 
     public function delete($id)
     {
-        Gate::authorize('delete', $product);
-
+        // 1. Cari dulu data produknya berdasarkan ID
         $product = Product::findOrFail($id);
         
+        // 2. SETELAH KETEMU, baru cek apakah user boleh menghapusnya
+        Gate::authorize('delete', $product);
+
+        // 3. Jika lolos pengecekan, hapus produknya
         $product->delete();
 
         return redirect()->route('product.index')->with('success', 'Product berhasil dihapus');

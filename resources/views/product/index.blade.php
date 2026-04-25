@@ -79,6 +79,7 @@
                                                 {{-- Component Delete dengan pengecekan akses --}}
                                                 @can('delete', $product)
                                                     {{-- NOTE: Pastikan di routes/web.php kamu nama routenya product.destroy atau product.delete --}}
+                                                    {{-- Pastikan namanya 'product.delete', bukan 'product.destroy' --}}
                                                     <x-delete-button :url="route('product.delete', $product->id)" />
                                                 @endcan
 
