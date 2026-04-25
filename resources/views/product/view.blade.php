@@ -67,12 +67,26 @@
                             </div>
                         </div>
                         
-                         {{-- menambahkan kategori di halaman view detail UCP1--}}
-                        <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                            <dt class="text-sm/6 font-medium text-gray-900 dark:text-gray-100">Kategori</dt>
-                            <dd class="mt-1 text-sm/6 text-gray-700 dark:text-gray-300 sm:col-span-2 sm:mt-0">
+                            {{-- 1. PEMBUNGKUS BARIS: 
+                             Menggunakan 'flex' dan 'items-center' agar label dan isi teks sejajar secara horizontal. 
+                             'px-5 py-4' memberikan ruang dalam yang seragam dengan baris Name, Qty, dan Price. --}}
+                        <div class="flex items-center px-5 py-4">
+                            
+                            {{-- 2. LABEL KIRI: 
+                                 'w-32' mengunci lebar label agar semua titik dua (:) atau teks isi nantinya sejajar vertikal ke bawah. 
+                                 Teks diubah menjadi bahasa Inggris "Category". --}}
+                            <div class="w-32 shrink-0 text-sm text-gray-500 dark:text-gray-400">Category</div>
+                            
+                            {{-- 3. ISI DATA (VALUE): 
+                                 Mengambil nama kategori melalui relasi model Product ke model Category. --}}
+                            <div class="text-sm font-medium text-gray-800 dark:text-gray-100">
+                                {{-- LOGIKA NILAI KOSONG:
+                                     $product->category->name -> Mencoba memanggil nama kategori.
+                                     ?? '-' -> Jika produk tersebut ternyata tidak punya kategori di database (null), 
+                                     maka akan otomatis menampilkan tanda strip (-) agar tidak error. --}}
                                 {{ $product->category->name ?? '-' }}
-                            </dd>
+                            </div>
+                            
                         </div>
 
                         {{-- Owner --}}

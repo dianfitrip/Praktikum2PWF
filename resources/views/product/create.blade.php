@@ -38,7 +38,7 @@
                             
                             {{-- Membuat dropdown (select) untuk kategori --}}
                             <select name="category_id" id="category_id" class="block mt-1 w-full border-gray-300 rounded-md shadow-sm">
-                                <option value="">-- Pilih Kategori --</option>
+                                <option value="">-- Choose Category --</option>
                                 
                                 {{-- Melakukan perulangan untuk mencetak semua opsi kategori --}}
                                 @foreach ($categories as $category)

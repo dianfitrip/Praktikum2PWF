@@ -57,26 +57,42 @@ class CategoryController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Menampilkan form untuk mengedit kategori.
      */
     public function edit(Category $category)
     {
-        //
+        // Mengarahkan ke file resources/views/category/edit.blade.php
+        return view('category.edit', compact('category'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * Menyimpan perubahan data kategori ke database.
      */
     public function update(Request $request, Category $category)
     {
-        //
+        // Validasi: Nama wajib diisi dan unik kecuali untuk kategori ini sendiri
+        $request->validate([
+            'name' => 'required|max:255|unique:categories,name,' . $category->id,
+        ]);
+
+        // Update data di database
+        $category->update([
+            'name' => $request->name,
+        ]);
+
+        // Kembali ke halaman list dengan pesan sukses
+        return redirect()->route('category.index')->with('success', 'Category updated successfully!');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Menghapus kategori dari database.
      */
     public function destroy(Category $category)
     {
-        //
+        // Proses hapus
+        $category->delete();
+
+        // Kembali ke halaman list dengan pesan sukses
+        return redirect()->route('category.index')->with('success', 'Category deleted successfully!');
     }
 }
