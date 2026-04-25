@@ -25,9 +25,9 @@ class Product extends Model
         return $this->belongsTo(User::class);
     }
 
-    // Menambahkan ": HasMany" di akhir fungsi
-    public function kategoris(): HasMany
+    // Relasi: model ini memiliki satu category (belongsTo)
+    public function category()
     {
-        return $this->hasMany(Kategori::class);
+        return $this->belongsTo(Category::class);
     }
 }

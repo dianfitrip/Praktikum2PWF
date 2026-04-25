@@ -26,6 +26,8 @@ class StoreProductRequest extends FormRequest
             'qty'     => 'required|integer|min:0',
             'price'   => 'required|numeric|min:0',
             'user_id' => 'required|exists:users,id', // Memastikan user yang dipilih ada di tabel users
+            // TAMBAHKAN category_id untuk UCP1
+            'category_id' => ['required', 'exists:categories,id'],
         ];
     }
 

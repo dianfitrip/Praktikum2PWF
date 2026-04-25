@@ -62,10 +62,14 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         Gate::authorize('update', $product);
-
+        // 1. Ambil data user untuk dropdown Owner
         $users = User::orderBy('name')->get();
         
-        return view('product.edit', compact('product', 'users'));
+        // 2. Ambil data kategori untuk dropdown Kategori
+        $categories = Category::all();
+        
+        // 3. Lempar data produk, users, DAN categories dalam SATU baris return
+        return view('product.edit', compact('product', 'users', 'categories'));
     }
 
     public function delete($id)

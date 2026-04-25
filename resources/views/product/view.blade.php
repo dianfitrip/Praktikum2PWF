@@ -66,11 +66,11 @@
                                 Rp {{ number_format($product->price, 0, ',', '.') }}
                             </div>
                         </div>
-
+                        
+                         {{-- menambahkan kategori di halaman view detail UCP1--}}
                         <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                             <dt class="text-sm/6 font-medium text-gray-900 dark:text-gray-100">Kategori</dt>
                             <dd class="mt-1 text-sm/6 text-gray-700 dark:text-gray-300 sm:col-span-2 sm:mt-0">
-                                {{-- Akan memanggil nama kategori. Jika produk tidak punya kategori, tampilkan teks '-' --}}
                                 {{ $product->category->name ?? '-' }}
                             </dd>
                         </div>

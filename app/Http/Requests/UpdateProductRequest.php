@@ -26,6 +26,8 @@ class UpdateProductRequest extends FormRequest
         'qty'     => 'required|integer|min:0',
         'price'   => 'required|numeric|min:0',
         'user_id' => 'required|exists:users,id',
+        //tambahkan id category UCP1
+        'category_id' => 'required|exists:categories,id',
         ];
     }
 
