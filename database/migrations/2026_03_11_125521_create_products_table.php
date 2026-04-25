@@ -17,12 +17,6 @@ return new class extends Migration
             $table->string('name');
             $table->integer('qty');
             $table->decimal('price', 10, 2);
-            // Cukup 1 user_id
-            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
-            
-            // INI TAMBAHANMU (Pastikan tulisan constrained-nya 'categories')
-            $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete();
-           
             $table->timestamps();
         });
     }
