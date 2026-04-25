@@ -38,8 +38,8 @@ class ProductPolicy
 
     public function delete(User $user, Product $product): bool
     {
-        // Logikanya sama dengan update
-        return $user->isAdmin() && $user->id === $product->user_id;
+        // Mengizinkan jika dia pemilik produk ATAU dia adalah admin
+        return $user->id === $product->user_id || $user->role === 'admin';
     }
 
     /**

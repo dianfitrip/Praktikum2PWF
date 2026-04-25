@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AboutController;
 //tambahan
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoryController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -22,8 +23,12 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    // Route::resource otomatis membuatkan rute index, create, store, edit, update, dan destroy
+    Route::resource('category', CategoryController::class);
+
     // Product Page
     Route::controller(ProductController::class)->prefix('product')->name('product.')->group(function () {
+        
         Route::get('/', 'index')->name('index');
         Route::post('/', 'store')->name('store');
         Route::get('/create', 'create')->name('create');
