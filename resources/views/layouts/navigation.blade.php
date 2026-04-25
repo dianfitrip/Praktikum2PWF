@@ -23,6 +23,11 @@
                     <x-nav-link :href="route('about')" :active="request()->routeIs('about')">
                         {{ __('About') }}
                     </x-nav-link>
+                    {{-- Tombol link Category List HANYA akan dirender/ditampilkan UCP1
+                        jika user lolos pengecekan Gate 'manage-category' --}}
+                    @can('manage-category')
+                        <a href="{{ route('category.index') }}">Category List</a>
+                    @endcan
                 </div>
             </div>
 

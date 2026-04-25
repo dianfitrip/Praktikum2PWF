@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Models\Category;
 
 class ProductController extends Controller
 {
@@ -31,11 +32,11 @@ class ProductController extends Controller
 
     public function create()
     {
-        Gate::authorize('create', Product::class);
-
-        $users = User::orderBy('name')->get();
+        // Mengambil semua data kategori dari database untuk ditampilkan di dropdown
+        $categories = Category::all(); 
         
-        return view('product.create', compact('users'));
+        // Melempar data kategori ke halaman form tambah produk
+        return view('product.create', compact('categories'));
     }
 
     public function show($id)

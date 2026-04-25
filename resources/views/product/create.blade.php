@@ -32,6 +32,23 @@
                                 <p class="mt-1.5 text-xs text-red-500">{{ $message }}</p>
                             @enderror
                         </div>
+                        {{-- UCP1--}}
+                        <div class="mt-4">
+                            <x-input-label for="category_id" :value="__('Kategori')" />
+                            
+                            {{-- Membuat dropdown (select) untuk kategori --}}
+                            <select name="category_id" id="category_id" class="block mt-1 w-full border-gray-300 rounded-md shadow-sm">
+                                <option value="">-- Pilih Kategori --</option>
+                                
+                                {{-- Melakukan perulangan untuk mencetak semua opsi kategori --}}
+                                @foreach ($categories as $category)
+                                    {{-- value akan menyimpan ID kategori ke database, sedangkan user melihat Nama kategorinya --}}
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
+                            </select>
+                            
+                            <x-input-error :messages="$errors->get('category_id')" class="mt-2" />
+                        </div>
 
                         {{-- Quantity & Price --}}
                         <div class="grid grid-cols-2 gap-4">

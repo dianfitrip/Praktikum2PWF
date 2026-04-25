@@ -17,13 +17,14 @@ class AppServiceProvider extends ServiceProvider
     }
 
     /**
-     * Bootstrap any application services.
+     * Bootstrap any application services. UCP1
      */
     public function boot(): void
     {
-        //
-        Gate::define('export-product', function (User $user) {
-            return $user->isAdmin();
+        // Membuat kunci gembok (Gate) bernama 'manage-category'
+        // Logikanya: Gate akan terbuka (true) JIKA user yang sedang login memiliki role 'admin'
+        Gate::define('manage-category', function (User $user) {
+            return $user->role === 'admin'; 
         });
     }
 }
